@@ -15,14 +15,13 @@ public class Database {
 		
 		//executeStatement(SqlModel.deleteModelTable());
 		
-		
-		//executeStatement(SqlManufacturer.createManufacturerTable());
-		//executeStatement(SqlModel.createModelTable());
-		//executeStatement(SqlVehicleIndex.createVehicleIndexTable());
-		
-		//executeStatement(SqlManufacturer.fillManufacturerTable());
-		//executeStatement(SqlModel.fillModelTable());
-		//executeStatement(SqlVehicleIndex.fillVehicleIndexTable());
+//		executeStatement(SqlManufacturer.createManufacturerTable());
+//		executeStatement(SqlModel.createModelTable());
+//		executeStatement(SqlVehicleIndex.createVehicleIndexTable());
+//		
+//		executeStatement(SqlManufacturer.fillManufacturerTable());
+//		executeStatement(SqlModel.fillModelTable());
+//		executeStatement(SqlVehicleIndex.fillVehicleIndexTable());
 		
 		//ArrayList<String> querys = new ArrayList<String>();
 		executeQueries(SqlManufacturer.getAllManufacturers(), SqlModel.getAllModels(), SqlVehicleIndex.getAllVehicles());
@@ -58,7 +57,7 @@ public class Database {
 	}	
 
 	private static void executeStatement(String sqlStatement) {
-		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
+		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database;create=true");
 				Statement statement = connection.createStatement();){
 				
 			
