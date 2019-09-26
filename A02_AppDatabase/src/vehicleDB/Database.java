@@ -57,7 +57,7 @@ public class Database {
 	}	
 
 	private static void executeStatement(String sqlStatement) {
-		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database;create=true");
+		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
 				Statement statement = connection.createStatement();){
 				
 			
