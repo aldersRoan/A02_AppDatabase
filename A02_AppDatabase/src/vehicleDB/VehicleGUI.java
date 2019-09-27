@@ -3,6 +3,7 @@ package vehicleDB;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
@@ -24,6 +25,9 @@ import java.awt.Rectangle;
 import javax.swing.JTable;
 import java.awt.Component;
 import javax.swing.JScrollPane;
+import javax.swing.JEditorPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JTextPane;
 
 /**
  * GUI that displays and manipulates an SQL database of vehicles
@@ -73,7 +77,8 @@ public class VehicleGUI extends JFrame {
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 
 		table = new JTable();
-		model = executeQueries(model, SqlVehicleIndex.queryVehicleIndex());
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		model = executeTableUpdate(model, SqlVehicleIndex.queryVehicleIndex());
 		
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -92,16 +97,28 @@ public class VehicleGUI extends JFrame {
 		upperPanel.setLayout(new GridLayout(1, 0, 0, 0));
 
 		JButton addButton = new JButton("ADD");
-		addButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddVehicleMenu addVehicle = new AddVehicleMenu();
+				addVehicle.setVisible(true);
+//				JFrame addVehicleBox = new JFrame("Add Vehicle Dialog Box");
+//				String vehicle = JOptionPane.showInputDialog(
+//								addVehicleBox,
+//								"Enter the vehicle information to add a new vehicle",
+//								"Add a Vehicle",
+//								JOptionPane.PLAIN_MESSAGE
+//								);
+				//executeRowUpdate(SqlModel.addToModelTable(vehicle));
+			}
+		});
+		//addButton.setBorder(new LineBorder(new Color(0, 0, 0)));
 		upperPanel.add(addButton);
 
 		JButton updateButton = new JButton("UPDATE LIST");
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				
-				executeQueries(model, SqlManufacturer.getAllManufacturers(), SqlModel.getAllModels(),
-						SqlVehicleIndex.getAllVehicles());
+				executeTableUpdate(model, SqlVehicleIndex.queryVehicleIndex());
 			}
 		});
 		upperPanel.add(updateButton);
@@ -109,7 +126,16 @@ public class VehicleGUI extends JFrame {
 		JButton deleteButton = new JButton("DELETE ITEM FROM LIST");
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				
+				JFrame dialogBox = new JFrame("InputDialog Example #2");
+				String code = JOptionPane.showInputDialog(
+								dialogBox,
+								"Enter the ID number of the vehicle you want to delete",
+								"Vehicle Deleter",
+								JOptionPane.PLAIN_MESSAGE
+								);
+				executeRowUpdate(SqlModel.delRowFromModelTable(code));
+				executeTableUpdate(model, SqlVehicleIndex.queryVehicleIndex());
 			}
 		});
 		upperPanel.add(deleteButton);
@@ -123,11 +149,11 @@ public class VehicleGUI extends JFrame {
 	 * @param queries
 	 * @return
 	 */
-	private static DefaultTableModel executeQueries(DefaultTableModel model, String... queries) {
+	public static DefaultTableModel executeTableUpdate(DefaultTableModel model, String... queries) {
 		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
 				Statement statement = connection.createStatement();){
 				model.setRowCount(0);
-			
+				
 				for(String query:queries) {
 					ResultSet results = statement.executeQuery(query);
 					ResultSetMetaData metaData = results.getMetaData();
@@ -142,10 +168,20 @@ public class VehicleGUI extends JFrame {
 				}
 				
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return model;
+	}
+	
+	static void executeRowUpdate(String query) {
+		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
+		
+				Statement statement = connection.createStatement();){
+				statement.executeUpdate(query);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}			
 	}
 }
