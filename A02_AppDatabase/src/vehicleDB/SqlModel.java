@@ -39,4 +39,14 @@ public class SqlModel {
 		return  ""
 		+ "drop table Model";
 	}
+	
+	public static String delRowFromModelTable(String row) {
+		return String.format(""
+		+ "DELETE FROM Model WHERE id = %s", row);
+	}
+	
+	public static String addToModelTable() {
+		return "INSERT into Model"
+		+ "(Name,Type,ModelYear,Price) VALUES ('Silverado','Truck','2020','57000')";
+	}
 }

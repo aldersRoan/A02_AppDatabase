@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Sep 26 17:44:44 MDT 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168): instance a816c00e-016d-6ff6-7054-000006f4c460 
+Fri Sep 27 11:06:29 MDT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168): instance a816c00e-016d-73b0-2f45-000006abab50 
 on database directory /Users/MacPro/git/localAppDatabase/A02_AppDatabase/Database with class loader sun.misc.Launcher$AppClassLoader@4e25154f 
 Loaded from file:/Users/MacPro/git/localAppDatabase/A02_AppDatabase/lib/derby.jar
 java.vendor=Oracle Corporation
