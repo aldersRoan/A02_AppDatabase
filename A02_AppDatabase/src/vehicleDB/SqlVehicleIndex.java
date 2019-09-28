@@ -20,9 +20,26 @@ public class SqlVehicleIndex {
 			return  ""
 			+ "INSERT INTO VehicleIndex (ManufacturerID,ModelID)"
 			+ "VALUES "
-			+ "(1, 101),"
-			+ "(2, 102),"
-			+ "(3, 103)";
+			+ "(3, 101),"
+			+ "(3, 102),"
+			+ "(3, 103),"
+			+ "(3, 104),"
+			+ "(3, 105),"
+			+ "(5, 106),"
+			+ "(1, 107),"
+			+ "(7, 108),"
+			+ "(6, 109),"
+			+ "(7, 110),"
+			+ "(6, 111),"
+			+ "(8, 112),"
+			+ "(9, 113),"
+			+ "(9, 114),"
+			+ "(6, 115),"
+			+ "(1, 116),"
+			+ "(2, 117),"
+			+ "(10, 118),"
+			+ "(11, 119),"
+			+ "(12, 120)";
 		}
 	
 	public static String getAllVehicles() { 
@@ -39,5 +56,11 @@ public class SqlVehicleIndex {
 				+ "ON VehicleIndex.ManufacturerID = Manufacturer.id "
 				+ "INNER JOIN Model "
 				+ "ON VehicleIndex.ModelID = Model.id";
+	}
+	
+	public static String deleteVehicleIndex() { 
+		
+		return  ""
+		+ "drop table VehicleIndex";
 	}
 }

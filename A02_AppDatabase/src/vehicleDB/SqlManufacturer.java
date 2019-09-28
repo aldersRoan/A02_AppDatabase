@@ -19,12 +19,21 @@ public class SqlManufacturer {
 	 */
 	public static String fillManufacturerTable() { 
 			
-			return  ""
-			+ "INSERT INTO Manufacturer (Name,Country)"
-			+ "VALUES "
-			+ "('Ford','USA'),"
-			+ "('Honda','Japan'),"
-			+ "('Chevrolet','USA')";
+		return ""
+				+ "INSERT INTO Manufacturer (Name,Country)"
+				+ " VALUES "
+				+ "('Ford','USA'),"
+				+ "('Honda','Japan'),"
+				+ "('Chevrolet','USA'),"
+				+ "('BMW', 'Germany'),"
+				+ "('Cadillac','USA'),"
+				+ "('Austin', 'United Kingdom'),"
+				+ "('Fillmore','USA'),"
+				+ "('Studebaker','USA'),"
+				+ "('Pontiac','USA'),"
+				+ "('Dodge','USA'),"
+				+ "('Toyota','Japan'),"
+				+ "('Mazda','Japan')";
 		}
 	
 	public static String getAllManufacturers() { 
@@ -32,4 +41,11 @@ public class SqlManufacturer {
 		return  ""
 		+ "select * from Manufacturer";
 	}
+	
+	public static String deleteManufacturerTable() { 
+		
+		return  ""
+		+ "drop table Manufacturer";
+	}
+
 }

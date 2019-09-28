@@ -13,18 +13,20 @@ public class Database {
 
 	public static void main(String[] args) {
 		
-		//executeStatement(SqlModel.deleteModelTable());
+//		executeStatement(SqlModel.deleteModelTable());
+//		executeStatement(SqlManufacturer.deleteManufacturerTable());
+//		executeStatement(SqlVehicleIndex.deleteVehicleIndex());
 		
 //		executeStatement(SqlManufacturer.createManufacturerTable());
 //		executeStatement(SqlModel.createModelTable());
 //		executeStatement(SqlVehicleIndex.createVehicleIndexTable());
-//		
+		
 //		executeStatement(SqlManufacturer.fillManufacturerTable());
 //		executeStatement(SqlModel.fillModelTable());
 //		executeStatement(SqlVehicleIndex.fillVehicleIndexTable());
 		
 		//ArrayList<String> querys = new ArrayList<String>();
-		executeQueries(SqlManufacturer.getAllManufacturers(), SqlModel.getAllModels(), SqlVehicleIndex.getAllVehicles());
+		executeQueries(SqlManufacturer.getAllManufacturers(), SqlModel.getAllModels(), SqlVehicleIndex.getAllVehicles(), SqlVehicleIndex.queryVehicleIndex());
 	
 		System.out.println();
 
@@ -43,7 +45,7 @@ public class Database {
 					while(results.next()) {
 						
 						for(int i = 1; i <= metaData.getColumnCount(); i++) {
-							System.out.print(results.getObject(i).toString()+"\t");
+							System.out.printf("%15s", results.getObject(i).toString());
 						}
 						System.out.println();
 					}
