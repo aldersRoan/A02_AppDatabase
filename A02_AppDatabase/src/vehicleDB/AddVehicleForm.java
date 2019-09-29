@@ -19,7 +19,12 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddVehicleMenu extends JFrame {
+/**
+ * This class is a form to add a new vehicle to the database.
+ * @author TannerK, WinstonF, AaronS
+ *
+ */
+public class AddVehicleForm extends JFrame {
 
 	private JPanel contentPane;
 	StringBuilder newVehicle = new StringBuilder();
@@ -31,7 +36,7 @@ public class AddVehicleMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddVehicleMenu frame = new AddVehicleMenu();
+					AddVehicleForm frame = new AddVehicleForm();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +48,7 @@ public class AddVehicleMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddVehicleMenu() {
+	public AddVehicleForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -92,6 +97,10 @@ public class AddVehicleMenu extends JFrame {
 		contentPane.add(btnCancel);
 	}
 
+	/**
+	 * Provides a text field to input a manufacturer of a vehicle.
+	 * @return JTextField manufacturer of a given vehicle.
+	 */
 	private JTextField newTxtManufacturer() {
 		JTextField textManufacturer = new JTextField();
 		textManufacturer.addActionListener(new ActionListener() {
@@ -106,6 +115,10 @@ public class AddVehicleMenu extends JFrame {
 		return textManufacturer;
 	}
 	
+	/**
+	 * Provides a text field to input a model of a vehicle.
+	 * @return JTextField model of a given vehicle.
+	 */
 	private JTextField newTxtModel() {
 		JTextField textModel = new JTextField();
 		textModel.addActionListener(new ActionListener() {
@@ -119,7 +132,11 @@ public class AddVehicleMenu extends JFrame {
 		textModel.setColumns(10);
 		return textModel;
 	}
-		
+	
+	/**
+	 * 	Provides a text field to input the year of a vehicle.
+	 * @return JTextField year of a given vehicle.
+	 */
 	private JTextField newTxtYear() {
 		JTextField textYear = new JTextField();
 		textYear.addActionListener(new ActionListener() {
@@ -133,6 +150,11 @@ public class AddVehicleMenu extends JFrame {
 		return textYear;
 	}	
 		
+	
+	/**
+	 * Provides a text field to input the price of a vehicle.
+	 * @return JTextField price of the vehicle.
+	 */
 	private JTextField newTxtPrice() {
 		JTextField textPrice = new JTextField();
 		textPrice.addActionListener(new ActionListener() {
@@ -146,6 +168,10 @@ public class AddVehicleMenu extends JFrame {
 		return textPrice;
 	}
 
+	/**
+	 * Provides a label for the manufacturer text field.
+	 * @return JLabel label for the manufacturer text field.
+	 */
 	private JLabel newLblManufacturer() {
 		JLabel lblManufacturer = new JLabel("Manufacturer");
 		lblManufacturer.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -153,6 +179,10 @@ public class AddVehicleMenu extends JFrame {
 		return lblManufacturer;
 	}
 	
+	/**
+	 * Provides a label for the model text field.
+	 * @return JLabel label for the model text field.
+	 */
 	private JLabel newLblModel() {
 		JLabel lblModel = new JLabel("Model");
 		lblModel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -160,6 +190,10 @@ public class AddVehicleMenu extends JFrame {
 		return lblModel;
 	}
 	
+	/**
+	 * Provides a label for the year text field.
+	 * @return JLabel label for the year text field.
+	 */
 	private JLabel newLblYear() {
 		JLabel lblYear = new JLabel("Year");
 		lblYear.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -167,6 +201,10 @@ public class AddVehicleMenu extends JFrame {
 		return lblYear;
 	}
 	
+	/**
+	 * Provides a label for the price text field.
+	 * @return JLabel label for the price text field.
+	 */
 	private JLabel newLblPrice() {
 		JLabel lblPrice = new JLabel("Price");
 		lblPrice.setHorizontalAlignment(SwingConstants.RIGHT);

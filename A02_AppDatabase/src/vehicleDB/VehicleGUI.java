@@ -99,7 +99,7 @@ public class VehicleGUI extends JFrame {
 		JButton addButton = new JButton("ADD");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddVehicleMenu addVehicle = new AddVehicleMenu();
+				AddVehicleForm addVehicle = new AddVehicleForm();
 				addVehicle.setVisible(true);
 //				JFrame addVehicleBox = new JFrame("Add Vehicle Dialog Box");
 //				String vehicle = JOptionPane.showInputDialog(
@@ -174,6 +174,10 @@ public class VehicleGUI extends JFrame {
 		return model;
 	}
 	
+	/**
+	 * Updates a row in the table taking in an SQL query.
+	 * @param query
+	 */
 	static void executeRowUpdate(String query) {
 		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
 		
