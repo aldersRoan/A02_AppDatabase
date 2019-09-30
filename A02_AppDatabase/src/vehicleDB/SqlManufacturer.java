@@ -8,7 +8,7 @@ public class SqlManufacturer {
 	 */
 	public static String createManufacturerTable() {
 		return "create table Manufacturer ( "
-					+ "id int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), "
+					+ "ManufacturerID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1) PRIMARY KEY, "
 					+ "Name varchar(256), "
 					+ "Country varchar(256))";
 	}
@@ -47,5 +47,9 @@ public class SqlManufacturer {
 		return  ""
 		+ "drop table Manufacturer";
 	}
-
+	
+	public static String updateManufacturerTable(String field, String newValue, String ID) {
+		return String.format(""
+		+ "UPDATE Model SET %s = %s WHERE ModelID = %s", field, newValue, ID);
+	}
 }

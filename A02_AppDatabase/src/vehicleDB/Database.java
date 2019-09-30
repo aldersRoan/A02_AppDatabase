@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+
 
 public class Database {
 
@@ -26,7 +28,7 @@ public class Database {
 //		executeStatement(SqlVehicleIndex.fillVehicleIndexTable());
 		
 		//ArrayList<String> querys = new ArrayList<String>();
-		executeQueries(SqlManufacturer.getAllManufacturers(), SqlModel.getAllModels(), SqlVehicleIndex.getAllVehicles(), SqlVehicleIndex.queryVehicleIndex());
+		executeQueries(SqlManufacturer.getAllManufacturers(), SqlModel.getAllModels());
 	
 		System.out.println();
 
@@ -34,7 +36,7 @@ public class Database {
 	
 	}
 	
-	private static void executeQueries(String... queries) {
+	public static void executeQueries(String... queries) {
 		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
 				Statement statement = connection.createStatement();){
 				
@@ -58,7 +60,7 @@ public class Database {
 		}
 	}	
 
-	private static void executeStatement(String sqlStatement) {
+	public static void executeStatement(String sqlStatement) {
 		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
 				Statement statement = connection.createStatement();){
 				
@@ -69,5 +71,52 @@ public class Database {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Takes a DefaultTableModel and a String of SQL queries and returns a
+	 * model for a JTable to be displayed in the GUI.
+	 * @param model
+	 * @param queries
+	 * @return
+	 */
+	public static DefaultTableModel executeTableUpdate(DefaultTableModel model, String... queries) {
+		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
+				Statement statement = connection.createStatement();){
+				model.setRowCount(0);
+				
+				for(String query:queries) {
+					ResultSet results = statement.executeQuery(query);
+					ResultSetMetaData metaData = results.getMetaData();
+					
+					while(results.next()) {
+						Object[] row = new Object[metaData.getColumnCount()];
+						for(int i = 1; i <= metaData.getColumnCount(); i++) {
+							row[i - 1] = results.getObject(i);
+						}
+						model.addRow(row);
+					}
+				}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return model;
+	}
+	
+	/**
+	 * Updates a row in the table taking in an SQL query.
+	 * @param query
+	 */
+	static void executeRowUpdate(String query) {
+		try(Connection connection = DriverManager.getConnection("jdbc:derby:Database");
+		
+				Statement statement = connection.createStatement();){
+				statement.executeUpdate(query);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}			
 	}
 }
